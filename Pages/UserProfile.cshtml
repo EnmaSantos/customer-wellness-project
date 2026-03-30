@@ -1,0 +1,358 @@
+@page
+@model customer_wellness_project.Pages.UserProfileModel
+@{
+    Layout = null;
+    ViewData["Title"] = "WellnessOps - User Profile";
+}
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#26364b",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "inverse-primary": "#a3d2a8",
+                        "tertiary-fixed": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "outline": "#727970",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary": "#505f76",
+                        "secondary": "#515f74",
+                        "primary-fixed": "#bfeec3",
+                        "on-primary-fixed-variant": "#254f30",
+                        "primary-fixed-dim": "#a3d2a8",
+                        "on-surface": "#191c1e",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-container": "#7ca982",
+                        "on-secondary-container": "#57657b",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "tertiary-container": "#8f9fb8",
+                        "outline-variant": "#c1c9bf",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "surface-tint": "#3d6846",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "surface-bright": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "secondary-container": "#d5e3fd",
+                        "primary": "#3d6846",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-primary-fixed": "#00210b",
+                        "inverse-surface": "#2d3133",
+                        "on-surface-variant": "#414941",
+                        "on-primary-container": "#133d20",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-dim": "#d8dadc"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            transition: background-color 0.3s ease;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .kinetic-button {
+            transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .kinetic-button:active {
+            transform: scale(0.96);
+        }
+        .bento-card {
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(51, 65, 85, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed">
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-[0_20px_40px_rgba(51,65,85,0.04)]">
+        <div class="flex justify-between items-center px-8 h-16 max-w-7xl mx-auto">
+            <div class="text-xl font-bold text-emerald-900 font-headline tracking-tight">WellnessOps</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-300 font-inter tracking-tight font-semibold" asp-page="/Dashboard">Dashboard</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-300 font-inter tracking-tight font-semibold" href="#">Health Log</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-300 font-inter tracking-tight font-semibold" href="#">Resources</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-300 font-inter tracking-tight font-semibold" href="#">Support</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-emerald-700 border-b-2 border-emerald-600 font-inter tracking-tight font-semibold cursor-pointer">Profile</div>
+                <img alt="User avatar" class="w-8 h-8 rounded-full border border-outline-variant/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeosogjfD2MAy4K_I71HLS_C8d21WGTeaSteDE-V8e5F6Ga1GTLBRVIj4noYAqKiZl29b7i3LkMeLG3VfQHvqFNk3kobfKDfmOf5jXxgr3QtQ-wzPs6FUK8CQhSqgFKepMgFVBku5gwJUuJcWJ3wZ1g8CxMZ5Cqu3XpGyDj3jm-reRKC3OAWmPI83xzA0XNRJa9UGEVXDgX0-jBdZWxe4qFd3D7DwBXlGW9_QUFNrISrjJVpCMPhXVMz2JUE2palOETpF8eiO3KhE0" />
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex min-h-screen pt-16">
+        <!-- Side Navigation -->
+        <aside class="hidden lg:flex flex-col p-4 gap-2 h-screen w-64 bg-slate-50 fixed">
+            <div class="px-4 py-6 mb-4">
+                <div class="text-lg font-black text-emerald-800 font-headline">WellnessOps</div>
+                <div class="text-xs font-medium text-slate-500 tracking-wider">Clinical Portal</div>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 hover:translate-x-1 transition-transform duration-200 rounded-lg font-medium text-sm" asp-page="/Dashboard">
+                    <span class="material-symbols-outlined">dashboard</span> Overview
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 hover:translate-x-1 transition-transform duration-200 rounded-lg font-medium text-sm" href="#">
+                    <span class="material-symbols-outlined">monitor_heart</span> Biometrics
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 hover:translate-x-1 transition-transform duration-200 rounded-lg font-medium text-sm" href="#">
+                    <span class="material-symbols-outlined">description</span> Medical Records
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 bg-white text-emerald-700 shadow-sm rounded-lg font-medium text-sm" asp-page="/UserProfile">
+                    <span class="material-symbols-outlined">settings</span> Settings
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 hover:translate-x-1 transition-transform duration-200 rounded-lg font-medium text-sm" href="#">
+                    <span class="material-symbols-outlined">help</span> Help
+                </a>
+            </nav>
+            <div class="mt-auto p-4">
+                <button class="w-full py-3 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-semibold shadow-sm kinetic-button">
+                    New Entry
+                </button>
+            </div>
+            <div class="border-t border-outline-variant/10 pt-4 mt-4">
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:text-error transition-colors text-sm font-medium" asp-page="/Login">
+                    <span class="material-symbols-outlined">logout</span> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-64 p-8 bg-surface-container-low min-h-screen">
+            <div class="max-w-6xl mx-auto">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-bold tracking-tight font-headline text-on-surface mb-2">Account Settings</h1>
+                    <p class="text-on-surface-variant font-body">Manage your clinical profile and preferences.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                    <!-- Profile Card -->
+                    <div class="md:col-span-7 bg-surface-container-lowest p-8 rounded-lg bento-card border border-transparent">
+                        <div class="flex flex-col sm:flex-row items-center gap-8">
+                            <div class="relative group">
+                                <img alt="Profile avatar" class="w-32 h-32 rounded-full border-4 border-primary-fixed shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8GiH8fy5sFfWGxe5u1Zz0n136FEFTn9ODwMRzHGI6dBJEFqMNYGvneAuz2EJt-O2tyNhmbQPPp8fUMn2kOege7Ue3O50Lndd2Bp71gb-xbngKEmN6GAXxa_7ZoeixsPddUt2M-RPYF8beGHEzw_e1FiFvalxUyEALFF7aslSvlA9p083_rspXXzvovmnHAFtsvxb2DNBaWsfHYg54qH7GQv0hQ_f5eancs5h0Zaif1gtzx9eppE86FJ5kSyIpj8sUpxdhTqPGHfIH" />
+                                <button class="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-sm">edit</span>
+                                </button>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <span class="text-[10px] font-bold tracking-[0.1em] text-secondary uppercase bg-secondary-container/30 px-2 py-1 rounded">Medical Administrator</span>
+                                <h2 class="text-3xl font-bold text-on-surface mt-2 font-headline">Dr. Sarah Henderson</h2>
+                                <p class="text-on-surface-variant mb-4">Senior Clinical Operations Manager</p>
+                                <div class="flex flex-wrap gap-3 justify-center sm:justify-start">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-fixed-dim/20 text-primary-container">
+                                        <span class="w-2 h-2 rounded-full bg-primary mr-2"></span> Active Now
+                                    </span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-surface-container-high text-on-surface-variant">
+                                        ID: #ADMIN-9921
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-outline-variant/10">
+                            <div>
+                                <p class="text-[10px] font-bold text-secondary uppercase tracking-wider mb-1">Email Address</p>
+                                <p class="text-sm font-medium">s.henderson@@wellnessops.clinic</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-secondary uppercase tracking-wider mb-1">Department</p>
+                                <p class="text-sm font-medium">Cardiology Diagnostics</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Stats Card -->
+                    <div class="md:col-span-5 bg-surface-container-lowest p-8 rounded-lg bento-card flex flex-col justify-between min-h-[300px]">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-semibold text-on-surface font-headline">Activity Stats</h3>
+                            <span class="material-symbols-outlined text-secondary opacity-50">query_stats</span>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-medium text-on-surface-variant">Profile Completion</span>
+                                    <span class="text-sm font-bold text-primary">85%</span>
+                                </div>
+                                <div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-primary to-primary-container" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/10">
+                                    <p class="text-2xl font-bold text-on-surface">1,240</p>
+                                    <p class="text-xs text-on-surface-variant">Records Reviewed</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/10">
+                                    <p class="text-2xl font-bold text-on-surface">42</p>
+                                    <p class="text-xs text-on-surface-variant">Clinical Reports</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-6 text-sm font-semibold text-primary flex items-center gap-2 group">
+                            View detailed analytics <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+
+                    <!-- Account Preferences Card -->
+                    <div class="md:col-span-5 bg-surface-container-lowest p-8 rounded-lg bento-card">
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="p-2 bg-primary-fixed-dim/20 text-primary rounded-lg">
+                                <span class="material-symbols-outlined">security_update_good</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-on-surface font-headline">Account Preferences</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-secondary">lock</span>
+                                    <div>
+                                        <p class="text-sm font-semibold">Security &amp; Access</p>
+                                        <p class="text-xs text-on-surface-variant">Two-factor authentication active</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-secondary">language</span>
+                                    <div>
+                                        <p class="text-sm font-semibold">Language &amp; Region</p>
+                                        <p class="text-xs text-on-surface-variant">English (US) - PST Timezone</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-secondary">visibility</span>
+                                    <div>
+                                        <p class="text-sm font-semibold">Privacy Settings</p>
+                                        <p class="text-xs text-on-surface-variant">Profile visible to Clinical Staff</p>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">chevron_right</span>
+                            </div>
+                        </div>
+                        <button class="mt-8 w-full py-3 border-2 border-primary/20 text-primary rounded-xl font-semibold kinetic-button hover:bg-primary/5">
+                            Update All Preferences
+                        </button>
+                    </div>
+
+                    <!-- Notification History Card -->
+                    <div class="md:col-span-7 bg-surface-container-lowest p-8 rounded-lg bento-card h-full">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-lg font-semibold text-on-surface font-headline">Notification History</h3>
+                            <button class="text-xs font-bold text-secondary uppercase tracking-widest hover:text-primary transition-colors">Mark all as read</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex gap-4 p-4 rounded-xl bg-primary-fixed/10 border-l-4 border-primary">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-primary">verified_user</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <p class="text-sm font-bold text-on-surface">Security Audit Completed</p>
+                                        <span class="text-[10px] text-on-surface-variant font-medium">2m ago</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant mt-1">Your quarterly access review has been finalized. No issues found.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-tertiary">medical_services</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <p class="text-sm font-semibold text-on-surface">New Health Log Entry</p>
+                                        <span class="text-[10px] text-on-surface-variant font-medium">1h ago</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant mt-1">Patient #8829 biometric data updated by Dr. Miller.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-secondary">update</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <p class="text-sm font-semibold text-on-surface">System Maintenance</p>
+                                        <span class="text-[10px] text-on-surface-variant font-medium">5h ago</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant mt-1">The clinical portal will be offline for 15 minutes at 02:00 AM PST.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="material-symbols-outlined text-secondary">mail</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <p class="text-sm font-semibold text-on-surface">Compliance Report Ready</p>
+                                        <span class="text-[10px] text-on-surface-variant font-medium">Yesterday</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant mt-1">The HIPAA compliance summary for Q3 is now available for download.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t-0 mt-auto">
+        <div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-slate-900 font-bold font-headline">WellnessOps</div>
+            <div class="flex gap-8">
+                <a class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200" href="#">Privacy Policy</a>
+                <a class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200" href="#">Terms of Service</a>
+                <a class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200" href="#">HIPAA Compliance</a>
+                <a class="text-xs text-slate-500 hover:text-emerald-600 transition-colors duration-200" href="#">Contact</a>
+            </div>
+            <p class="text-xs text-slate-500 font-inter opacity-80">&copy; @DateTime.Now.Year WellnessOps Clinical Systems. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
