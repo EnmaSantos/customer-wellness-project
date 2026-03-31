@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\u222766015\\.nuget\\packages\\": {}
+    "/Users/enmanueldelossantoscruz/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\u222766015\\projects\\customer-wellness-project\\customer-wellness-project.csproj",
+      "projectUniqueName": "/Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/customer-wellness-project.csproj",
       "projectName": "customer-wellness-project",
-      "projectPath": "C:\\Users\\u222766015\\projects\\customer-wellness-project\\customer-wellness-project.csproj",
-      "packagesPath": "C:\\Users\\u222766015\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\u222766015\\projects\\customer-wellness-project\\obj\\",
+      "projectPath": "/Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/customer-wellness-project.csproj",
+      "packagesPath": "/Users/enmanueldelossantoscruz/.nuget/packages/",
+      "outputPath": "/Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\u222766015\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/enmanueldelossantoscruz/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -44,7 +44,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
