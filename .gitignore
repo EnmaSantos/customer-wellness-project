@@ -1,0 +1,9 @@
+# ASP.NET Core default ignore patterns
+bin/
+obj/
+*.user
+*.suo
+
+# Ignore configs with connection strings (user request)
+appsettings.json
+appsettings.Development.json
