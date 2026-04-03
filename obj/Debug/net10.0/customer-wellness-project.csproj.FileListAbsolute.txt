@@ -386,3 +386,5 @@ C:/Users/u222766015/projects/customer-wellness-project/obj/Debug/net10.0/ref/cus
 /Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/obj/Debug/net10.0/compressed/yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
 /Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/obj/Debug/net10.0/compressed/qninrvoo3k-{0}-dnbkpirvwa-dnbkpirvwa.gz
 /Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/obj/Debug/net10.0/customer.14D04535.Up2Date
+/Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.Google.dll
+/Users/enmanueldelossantoscruz/Documents/Projects/customer-wellness-project/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll

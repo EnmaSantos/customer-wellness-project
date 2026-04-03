@@ -106,9 +106,9 @@
                 <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-300 font-inter tracking-tight font-semibold text-sm" href="#">Support</a>
             </div>
             <div class="flex items-center gap-4">
-                <button class="kinetic-gradient text-on-primary px-6 py-2 rounded-xl text-sm font-semibold tracking-tight scale-95 active:duration-75 transition-transform">
-                    Request Demo
-                </button>
+                <a asp-page="/Login" class="kinetic-gradient text-on-primary px-6 py-2 rounded-xl text-sm font-semibold tracking-tight shadow-md hover:scale-[1.02] active:scale-[0.96] transition-all inline-block">
+                    Log In
+                </a>
             </div>
         </div>
     </nav>
@@ -126,12 +126,12 @@
                         Streamline hospital operations with an intuitive clinical portal designed for the modern healthcare enterprise. High-precision logistics, automated through a gentle interface.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a asp-page="/SignUp" class="kinetic-gradient text-on-primary px-8 py-4 rounded-xl font-bold tracking-tight shadow-lg transition-all hover:scale-[1.02] active:scale-[0.96] inline-block">
-                            Start Transformation
+                        <a asp-page="/Dashboard" class="kinetic-gradient text-on-primary px-8 py-4 rounded-xl font-bold tracking-tight shadow-lg transition-all hover:scale-[1.02] active:scale-[0.96] inline-block">
+                            View Admin Dashboard
                         </a>
-                        <button class="bg-surface-container-low text-secondary px-8 py-4 rounded-xl font-bold tracking-tight border border-outline-variant/20 transition-all hover:bg-surface-container">
-                            View Case Studies
-                        </button>
+                        <a asp-page="/Login" class="bg-surface-container-low text-secondary px-8 py-4 rounded-xl font-bold tracking-tight border border-outline-variant/20 transition-all hover:bg-surface-container inline-block">
+                            Log In
+                        </a>
                     </div>
                 </div>
                 <div class="lg:w-1/2 relative h-[500px] w-full rounded-xl overflow-hidden bento-card-shadow">
@@ -224,18 +224,16 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="mt-32 max-w-5xl mx-auto px-8 text-center">
-            <h2 class="text-[2.5rem] font-bold tracking-tight text-on-surface mb-6">Ready to upgrade your clinical workspace?</h2>
+        <section class="mt-32 max-w-5xl mx-auto px-8 text-center pb-16">
+            <h2 class="text-[2.5rem] font-bold tracking-tight text-on-surface mb-6">Explore the Portal</h2>
             <p class="text-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
-                Join over 500+ healthcare systems that have revolutionized their administrative workflows with WellnessOps.
+                Dive into the admin dashboard to see how WellnessOps dynamically manages real-time healthcare logistics.
             </p>
-            <div class="inline-flex p-2 bg-surface-container rounded-2xl shadow-inner">
-                <input class="bg-transparent border-none focus:ring-0 px-6 py-3 w-64 md:w-80 font-medium" placeholder="Enter work email" type="email" />
-                <button class="kinetic-gradient text-on-primary px-8 py-3 rounded-xl font-bold transition-all hover:scale-[1.02] active:scale-[0.95]">
-                    Request Access
-                </button>
+            <div class="inline-flex gap-4 p-2 relative">
+                <a asp-page="/Dashboard" class="kinetic-gradient text-on-primary px-10 py-4 rounded-xl font-bold shadow-lg transition-all hover:scale-[1.02] active:scale-[0.95] inline-block">
+                    Enter Dashboard
+                </a>
             </div>
-            <p class="text-xs text-slate-400 mt-6">Enterprise demo includes full technical feasibility audit and HIPAA readiness assessment.</p>
         </section>
     </main>
 
@@ -247,10 +245,10 @@
                 <p class="font-inter text-xs text-slate-500">&copy; @DateTime.Now.Year WellnessOps Clinical Systems. All rights reserved.</p>
             </div>
             <div class="flex flex-wrap gap-8">
-                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" href="#">Privacy Policy</a>
-                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" href="#">Terms of Service</a>
-                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" href="#">HIPAA Compliance</a>
-                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" href="#">Contact</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" asp-page="/Privacy">Privacy Policy</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" asp-page="/Privacy">Terms of Service</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" asp-page="/Privacy">HIPAA Compliance</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors duration-200 font-inter text-xs" asp-page="/Privacy">Contact</a>
             </div>
         </div>
     </footer>

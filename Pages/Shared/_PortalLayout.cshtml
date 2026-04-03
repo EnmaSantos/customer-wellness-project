@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>WellnessOps | @ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "secondary-container": "#d5e3fd",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed": "#00210b",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "primary": "#3d6846",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#133d20",
+                        "primary-container": "#7ca982",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "tertiary": "#505f76",
+                        "secondary-fixed": "#d5e3fd",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-surface": "#191c1e",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#bfeec3",
+                        "surface-bright": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "surface": "#f7f9fb",
+                        "on-secondary-container": "#57657b",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "secondary": "#515f74",
+                        "surface-container-low": "#f2f4f6",
+                        "outline-variant": "#c1c9bf",
+                        "outline": "#727970",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#8f9fb8",
+                        "inverse-primary": "#a3d2a8",
+                        "primary-fixed-dim": "#a3d2a8",
+                        "on-surface-variant": "#414941",
+                        "on-primary-fixed-variant": "#254f30",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "on-background": "#191c1e",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#26364b",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#3d6846",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-highest": "#e0e3e5"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .tonal-shift-layering {
+            background-color: #f2f4f6;
+        }
+        .card-lift {
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(51, 65, 85, 0.04);
+        }
+        .btn-kinetic:active {
+            transform: scale(0.96);
+        }
+        
+        /* Toast Notification CSS */
+        #toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .toast {
+            background: #ffffff;
+            border-left: 4px solid #3d6846; /* Primary color */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 300px;
+            pointer-events: auto;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
+            opacity: 0;
+        }
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+    
+    <!-- Global Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- SideNavBar -->
+    <aside class="fixed left-0 top-0 h-full z-40 flex flex-col w-64 border-r border-slate-200/50 bg-slate-50 font-['Inter'] antialiased text-sm font-medium tracking-tight shadow-[0_20px_40px_rgba(51,65,85,0.04)]">
+        <div class="p-8">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">WellnessOps</h1>
+            <p class="text-xs text-slate-500 font-normal mt-1">Enterprise Portal</p>
+        </div>
+        <nav class="flex-1 px-4 space-y-2">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 @(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "bg-emerald-50 text-emerald-800 font-semibold border-r-4 border-emerald-600" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100")" asp-page="/Dashboard">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 @(ViewData["ActivePage"]?.ToString() == "Inventory" ? "bg-emerald-50 text-emerald-800 font-semibold border-r-4 border-emerald-600" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100")" asp-page="/Inventory">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span>Inventory</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 @(ViewData["ActivePage"]?.ToString() == "Tickets" ? "bg-emerald-50 text-emerald-800 font-semibold border-r-4 border-emerald-600" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100")" asp-page="/Tickets">
+                <span class="material-symbols-outlined">confirmation_number</span>
+                <span>Tickets</span>
+            </a>
+        </nav>
+        <div class="p-6 mt-auto">
+            <a asp-page="/UserProfile" class="flex items-center gap-3 p-3 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow">
+                <img alt="User profile picture" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEOhONain8Tado_9WsuSaI2f1eiE5I4pWd9ATQ4z7mUSqw0rvNDF4RH3uzfoaDC6Ns2vHk8VLDLmw0LW1sFWV6o45dWy57IwmL86c-WgtjkXwlUCdsud58XKdPaceBn5A0wvxVu5d0REuCJJXAL8-e1gg9frD9rV7qbYef9oDtzYLXg0KTdc8K7nQ_c9FAw_kKM5b6u0hQxo71KIAXzWL_ZRhUltk6nZNXUCculAitBxbwv6SOc0ClfzNhEzttgKmtyn3fxYQG6zbE" />
+                <div class="overflow-hidden">
+                    <p class="text-sm font-bold truncate">Dr. Sarah Chen</p>
+                    <p class="text-xs text-slate-500 truncate">Administrator</p>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="ml-64 min-h-screen">
+        <!-- TopNavBar -->
+        <header class="sticky top-0 right-0 z-30 flex items-center justify-between px-8 w-full h-16 bg-white/80 backdrop-blur-md border-b border-slate-100 font-['Inter'] text-sm font-medium">
+            <div class="flex items-center flex-1 max-w-xl">
+                <div class="relative w-full focus-within:ring-2 focus-within:ring-emerald-500/20 rounded-lg transition-all">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input class="w-full pl-10 pr-4 py-2 bg-surface-container-high border-none rounded-lg text-sm focus:ring-0 placeholder:text-slate-400" placeholder="Search medical records, inventory, or tickets..." type="text" oninput="showToast('Searching...', 'Search active: ' + this.value, 'search')" />
+                </div>
+            </div>
+            <div class="flex items-center gap-6 ml-8">
+                <button class="text-slate-500 hover:text-emerald-600 transition-colors relative" onclick="showToast('Notifications', 'You have no new alerts.', 'notifications')">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+                </button>
+                <button class="text-slate-500 hover:text-emerald-600 transition-colors" onclick="showToast('Help Center', 'Help documentation is loading...', 'help')">
+                    <span class="material-symbols-outlined">help_outline</span>
+                </button>
+                <div class="h-8 w-[1px] bg-slate-200"></div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Status</span>
+                    <span class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-bold cursor-pointer" onclick="showToast('System Metrics', 'All systems operational.', 'check_circle')">
+                        <span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-pulse"></span>
+                        LIVE
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Body Render -->
+        <div class="p-10 max-w-7xl mx-auto">
+            @RenderBody()
+        </div>
+    </main>
+
+    <!-- Create Ticket Floating Button -->
+    <button onclick="showToast('New Entry', 'The creation wizard is loading...', 'add_box')" class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+        <span class="material-symbols-outlined text-3xl">add</span>
+    </button>
+    
+
+    <script>
+        // Global Toast Notification System
+        function showToast(title, message, icon = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-700 flex-shrink-0">
+                    <span class="material-symbols-outlined text-sm">${icon}</span>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-slate-800">${title}</h4>
+                    <p class="text-xs text-slate-500">${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            
+            // Trigger animation in
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400); // Wait for transition
+            }, 3000);
+        }
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

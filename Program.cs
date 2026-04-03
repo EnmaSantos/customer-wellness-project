@@ -38,4 +38,20 @@ app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
 
+// --- SEED DATABASE START ---
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        await customer_wellness_project.Data.DbSeeder.SeedDataAsync(services);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
+// --- SEED DATABASE END ---
+
 app.Run();
